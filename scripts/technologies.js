@@ -1,17 +1,17 @@
-import { getTechnology } from "./database";
+import { getTechnology, setTechnology } from "./database.js"
 
 const techs = getTechnology()
 
-// document.addEventListener(
-//     "change",
-//     (changeEvent) => {
-//         if (changeEvent.target.id === "resource") {
-//             setWheels(parseInt(event.target.value))
-//             // const chosenOption = changeEvent.target.value
-//             // console.log(chosenOption)  // "1" or "2"
-//         }
-//     }
-// )
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id === "tech") {
+            setTechnology(parseInt(event.target.value))
+            // const chosenOption = event.target.value
+            // console.log(chosenOption)  // "1" or "2"
+        }
+    }
+)
 
 export const Technologies = () => {
     let html = ""

@@ -1,23 +1,22 @@
-import { getPaint } from "./database";
+import { getPaint, setPaint } from "./database.js"
 
 const paints = getPaint()
 
 // add event listener to set user input
 
-// document.addEventListener(
-//     "change",
-//     (changeEvent) => {
-//         if (changeEvent.target.id === "paints") {
-//             setPaint(parseInt(event.target.value))
-//             // const chosenOption = changeEvent.target.value
-//             // console.log(chosenOption)  // "1" or "2"
-//         }
-//     }
-// )
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id === "paints") {
+            setPaint(parseInt(event.target.value))
+            // const chosenOption = event.target.value
+            // console.log(chosenOption)  // "1" or "2"
+        }
+    }
+)
 
 export const Paints = () => {
-    return `<h2>Paints</h2>
-        <select id="paints">
+    return `<select id="paints">
             <option value="0">Select a paint option</option>
             ${
                 paints.map(

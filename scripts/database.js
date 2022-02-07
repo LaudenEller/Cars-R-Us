@@ -1,4 +1,4 @@
-// add database representing ERD
+// add database representing ERD + an empty orderBuilder object and a customerOrders array
 const database = {
     orderBuilder: {
 
@@ -29,17 +29,18 @@ const database = {
     ],
     customerOrders: [
         {
-            id: n,
-            wheelsId: n,
-            technologyId: n,
-            interiorId: n,
-            paintId: n
+            id: 1,
+            wheelId: 3,
+            techId: 2,
+            interiorId: 3,
+            paintId: 4,
+            timestamp: 1614659931693 
         },
     ]
     }
 
 
-// export each section of the database
+// export each section of the database to their respective modules
 export const getWheels = () => {
     return database.wheels.map(wheel => ({...wheel}))
 }
@@ -50,22 +51,43 @@ export const getInterior = () => {
     return database.interior.map(interior => ({...interior}))
 }
 export const getPaint = () => {
-    return database.paint.map(wheel => ({...paint}))
+    return database.paint.map(paint => ({...paint}))
 }
 
-export const addCustomOrder = () => {
+export const getOrders = () => {
+    return database.customerOrders.map(order => ({...order}))
+}
+
+// export setFunctions that respond to event listeners
+
+export const setWheels = (eventId) => {
+    database.orderBuilder.wheelId = eventId
+}
+export const setInterior = (eventId) => {
+    database.orderBuilder.interiorId = eventId
+}
+export const setPaint = (eventId) => {
+    database.orderBuilder.paintId = eventId
+}
+export const setTechnology = (eventId) => {
+    database.orderBuilder.techId = eventId
+}
+
+// function that adds a new order to the DOM, resets the orderbuilder object and "announe" a change in the HTML
+
+export const addCustomerOrder = () => {
     // Copy the current state of user choices
     const newOrder = {...database.orderBuilder}
 
     // Add a new primary key to the object
-    const lastIndex = database.customOrders.length - 1
-    newOrder.id = database.customOrders[lastIndex].id + 1
+    const lastIndex = database.customerOrders.length - 1
+    newOrder.id = database.customerOrders[lastIndex].id + 1
 
     // Add a timestamp to the order
     newOrder.timestamp = Date.now()
 
     // Add the new order object to custom orders state
-    database.customOrders.push(newOrder)
+    database.customerOrders.push(newOrder)
 
     // Reset the temporary state for user choices
     database.orderBuilder = {}

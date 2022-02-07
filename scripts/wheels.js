@@ -1,48 +1,31 @@
-import { getWheels } from "./database";
+import { getWheels, setWheels } from "./database.js"
 
 const wheels = getWheels()
 
+// add event listener to set user input
+
+document.addEventListener(
+    "change",
+    (event) => {
+        if (event.target.id === "wheels") {
+            setWheels(parseInt(event.target.value))
+            // const chosenOption = event.target.value
+            // console.log(chosenOption)  // "1" or "2"
+        }
+    }
+)
+
+// export wheels html using dropdown menu instead of radio buttons
 export const Wheels = () => {
-    let html = "<ul>"
+    let html = ""
    
-    html += `<select id="wheels"><option value="0">Choose Some Wheels</option>`
+    html += `<select id="wheels">`
+    html += `<option value="0">Choose Some Wheels</option>`
     
     for (const wheel of wheels) {
-        html += `<li>
-        <option value="1">${wheel.name}</option>
-        </li>`
+        html += `<option value="${wheel.id}">${wheel.name}</option>`
 }
 
-html += "</ul>"
+html += "</select>"
 return html
 }
-
-// import { getMetals, setMetal } from "./database.js"
-
-// const metals = getMetals()
-
-// document.addEventListener(
-//     "change",
-//     (event) => {
-//         if (event.target.name === "metal") {
-//             setMetal(parseInt(event.target.value))
-//         }
-//     }
-// )
-
-// export const Metals = () => {
-//     let html = "<ul>"
-//     // Remember that the function you pass to find() must return true/false
-    
-    
-//     // This is how you have been converting objects to <li> elements
-//     for (const metal of metals) {
-//         html += `<li>
-//         <input type="radio" name="metal" value="${metal.id}" /> ${metal.metal}
-//         </li>`
-//     }
-    
-    
-//     html += "</ul>"
-//     return html
-// }

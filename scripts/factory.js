@@ -1,21 +1,21 @@
-// import functions from all other modules
+// import functions from other modules
 import { Technologies } from "./technologies.js"
 import { Interiors } from "./interiors.js"
 import { Paints } from "./paints.js"
 import { Wheels } from "./wheels.js"
-import { addCustomOrder } from "./database.js"
+import { addCustomerOrder } from "./database.js"
+import { Orders } from "./orders.js"
 
 // add event listener to place order button
+document.addEventListener(
+    "click",
+    (event) => {
+        if (event.target.id === "orderButton") {
+            addCustomerOrder()
 
-// document.addEventListener(
-//     "click",
-//     (event) => {
-//         if (event.target.id === "orderButton") {
-//             addCustomOrder()
-
-//         }
-//     }
-// )
+        }
+    }
+)
 
 // interpoolate imported functions in the appropriate places of HTML structure
 
@@ -45,37 +45,13 @@ export const carFactory = () => {
             </section>
             
     </article>
-    `
+
+    <article>
+    <button id="orderButton">Order Your Car</button>
+</article>
+
+<article class="carOrders">
+    ${Orders()}
+</article>
+`
 }
-
-
-
-// export const KneelDiamonds = () => {
-//     return `
-//         <h1>Kneel Diamonds</h1>
-
-//         <article class="choices">
-//             <section class="choices__metals options">
-//                 <h2>Metals</h2>
-//                 ${Metals()}
-//             </section>
-//             <section class="choices__sizes options">
-//                 <h2>Sizes</h2>
-//                 ${DiamondSizes()}
-//             </section>
-//             <section class="choices__styles options">
-//                 <h2>Styles</h2>
-//                 ${JewelryStyles()}
-//             </section>
-//         </article>
-
-//         <article>
-//             <button id="orderButton">Create Custom Order</button>
-//         </article>
-
-//         <article class="customOrders">
-//             <h2>Custom Jewelry Orders</h2>
-//             ${Orders()}
-//         </article>
-//     `
-// }
